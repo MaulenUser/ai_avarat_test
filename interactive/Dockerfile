@@ -36,14 +36,12 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copy just the dependency files first, for more efficient layer caching
-COPY pyproject.toml uv.lock ./
+COPY pyproject.toml ./
 RUN mkdir -p src
 
-# Install Python dependencies using UV's lock file
-# --locked ensures we use exact versions from uv.lock for reproducible builds
-# This creates a virtual environment and installs all dependencies
-# Ensure your uv.lock file is checked in for consistency across environments
-RUN uv sync --locked
+# Install Python dependencies using UV
+# We don't use --locked because uv.lock might not be present
+RUN uv sync
 
 # Copy all remaining application files into the container
 # This includes source code, configuration files, and dependency specifications
