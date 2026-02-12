@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 10, 10, 10;
+  --background-end-rgb: 0, 0, 0;
+  --accent-glow: 124, 58, 237;
+  /* Violet-600 */
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  min-height: 100vh;
+  overflow: hidden;
+  /* Prevent scrolling for immersive feel */
+  font-family: 'Inter', sans-serif;
+}
+
+/* Custom Scrollbar for hidden elements */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Animations */
+@keyframes breathe {
+  0% {
+    box-shadow: 0 0 20px rgba(var(--accent-glow), 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(var(--accent-glow), 0.5);
+  }
+
+  100% {
+    box-shadow: 0 0 20px rgba(var(--accent-glow), 0.2);
+  }
+}
+
+.animate-breathe {
+  animation: breathe 4s infinite ease-in-out;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
